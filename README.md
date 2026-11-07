@@ -1,160 +1,108 @@
-\# ☁️ Kubernetes Cloud Architecture Labs
+# ☁️ Kubernetes Cloud Architecture Labs
 
+🌍 **Erasmus+ Project | University of Salerno (Italy)**
 
+This repository showcases a collection of hands-on Kubernetes labs completed during my **Erasmus+ academic mobility at the University of Salerno**, focusing on container orchestration, cloud-native application deployment, multi-container architectures, workload resilience, namespace isolation, and Kubernetes networking.
 
-A hands-on collection of Kubernetes labs exploring cloud-native application deployment, container orchestration, multi-container architectures, workload resilience, namespace isolation, and application networking.
+The project is organized into five modules, progressing from fundamental Kubernetes deployments to more advanced application architecture and networking scenarios.
 
+---
 
+# 🚀 Project Overview
 
-\## 🌍 Overview
+The repository contains practical Kubernetes exercises exploring different approaches to deploying, organizing, and managing containerized applications.
 
+Topics covered include:
 
+- Single-container application deployments
+- Multi-container Pod architectures and sidecar patterns
+- Namespace organization and workload isolation
+- Replica management and resilient deployments
+- Host-based and path-based application routing
+- Kubernetes YAML manifests and declarative configuration
+- Application logging and service communication
 
-This repository contains practical Kubernetes exercises completed during my Erasmus+ academic mobility at the \*\*University of Salerno, Italy\*\*.
+Each module introduces different Kubernetes resources and configuration patterns, building on concepts explored in previous exercises.
 
+---
 
+# 📚 Repository Structure
 
-The project is organized into five modules, progressing from fundamental container deployments to more advanced cloud-native architecture concepts. Each module includes Kubernetes YAML manifests, supporting documentation, and visual resources illustrating the exercises.
+| **Module** | **Focus** | **Concepts & Examples** |
+|---|---|---|
+| **01 - Single Container Apps** | Individual application deployments | Pods, Deployments, Services |
+| **02 - Multi-Container Apps** | Multi-container workloads | Sidecar patterns, logging, log adapters |
+| **03 - Namespace Isolation** | Workload organization | Namespaces, resource isolation |
+| **04 - Resilient Deployments** | Workload resilience | Replicas, NGINX and Podinfo deployments |
+| **05 - Internet-Facing Deployments** | External application routing | Host-based and path-based routing |
 
+Each module contains its own Kubernetes YAML manifests, supporting documentation, and visual resources illustrating the exercises.
 
+---
 
-\## 🚀 Project Modules
+# ☁️ Kubernetes Concepts Covered
 
+- Pods
+- Deployments
+- Services
+- Container orchestration
+- Multi-container Pod architectures
+- Sidecar Containers
+- Application logging
+- Namespace isolation
+- Replica management
+- Workload resilience
+- Host-based routing
+- Path-based routing
+- Service communication
+- Declarative infrastructure
+- Kubernetes YAML configuration
 
+---
 
-| Module | Description |
+# 💼 Skills Demonstrated
 
-|---|---|
+- Designing and configuring Kubernetes workloads
+- Creating Kubernetes Deployment and Service manifests
+- Working with multi-container Pod architectures
+- Configuring sidecar containers
+- Implementing logging patterns
+- Organizing workloads using Kubernetes Namespaces
+- Managing application replicas
+- Configuring host-based and path-based routing
+- Working with declarative infrastructure using YAML
+- Understanding cloud-native application architecture
 
-| 01 - Single Container Apps | Deploying and exposing individual containerized applications |
+---
 
-| 02 - Multi-Container Apps | Multi-container workloads, sidecar patterns, and logging |
+# 🎯 What I Worked On
 
-| 03 - Namespace Isolation | Namespace organization and resource isolation |
+Throughout these exercises, I worked on multiple Kubernetes configurations and application scenarios, including:
 
-| 04 - Resilient Deployments | Replica management and workload resilience |
+- Deploying applications such as NGINX, Podinfo, Whoami, and Echo Service
+- Configuring sidecar logging containers and log adapters
+- Working with HTTP error monitoring and application access logs
+- Organizing applications across different Kubernetes namespaces
+- Configuring resilient application deployments
+- Exploring host-based and path-based routing scenarios
+- Documenting configurations with supporting screenshots and explanations
 
-| 05 - Internet-Facing Deployments | Ingress configuration, routing, and external application access |
+---
 
+# 🛠️ Technologies
 
+**Kubernetes • Docker • YAML • kubectl • Containerization • Cloud-Native Architecture**
 
-\## 🛠️ Key Concepts
+---
 
+# 🚀 Learning Outcomes
 
+This project strengthened my practical understanding of Kubernetes and cloud-native application architecture through hands-on configuration exercises.
 
-\- Kubernetes Deployments and Services
+It provided experience with container orchestration, multi-container workloads, namespace isolation, application networking, routing, logging, and workload resilience.
 
-\- Pods and container orchestration
+These exercises also helped develop a stronger foundation in technologies and architectural concepts used in modern Cloud, DevOps, and Platform Engineering environments.
 
-\- Multi-container architectures
+---
 
-\- Sidecar patterns and logging
-
-\- Namespace isolation
-
-\- Replica management and workload resilience
-
-\- Ingress and application routing
-
-\- Cloud-native deployment practices
-
-
-
-\## 📂 Repository Structure
-
-
-
-```text
-
-kubernetes-cloud-architecture-labs/
-
-│
-
-├── 01-single-container-apps/
-
-│   ├── assets/
-
-│   ├── \*.yaml
-
-│   └── README.md
-
-│
-
-├── 02-multi-container-apps/
-
-│   ├── assets/
-
-│   ├── \*.yaml
-
-│   └── README.md
-
-│
-
-├── 03-namespace-isolation/
-
-│   ├── assets/
-
-│   ├── \*.yaml
-
-│   └── README.md
-
-│
-
-├── 04-resilient-deployments/
-
-│   ├── assets/
-
-│   ├── \*.yaml
-
-│   └── README.md
-
-│
-
-├── 05-internet-facing-deployments/
-
-│   ├── assets/
-
-│   ├── \*.yaml
-
-│   └── README.md
-
-│
-
-└── README.md
-
-```
-
-
-
-Each module contains its corresponding Kubernetes manifests, documentation, and supporting visual resources.
-
-
-
-\## 💻 Technologies \& Tools
-
-
-
-\- Kubernetes
-
-\- Docker / Containers
-
-\- YAML
-
-\- kubectl
-
-\- Cloud-Native Architecture
-
-\- DevOps Concepts
-
-
-
-\## 🎓 Academic Context
-
-
-
-Developed as part of the Erasmus+ academic mobility programme at the \*\*University of Salerno, Italy\*\*.
-
-
-
-This repository organizes and documents practical coursework and laboratory exercises completed during the academic mobility, including the Kubernetes configurations and supporting materials developed as part of the labs.
-
+**Academic Context:** Erasmus+ Academic Mobility | University of Salerno, Italy
