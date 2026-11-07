@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-status
+  labels:
+    app: api-status
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-status
+  template:
+    metadata:
+      labels:
+        app: api-status
+    spec:
+      containers:
+        - name: podinfo
+          image: stefanprodan/podinfo:6.4.0
+          ports:
+            - containerPort: 9898
+          env:
+            - name: PODINFO_UI_MESSAGE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace

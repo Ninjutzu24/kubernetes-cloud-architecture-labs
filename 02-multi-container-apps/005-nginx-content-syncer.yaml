@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-with-syncer
+  labels:
+    app: nginx-with-syncer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-with-syncer
+  template:
+    metadata:
+      labels:
+        app: nginx-with-syncer
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.27
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: content
+              mountPath: /usr/share/nginx/html
+        - name: content-syncer
+          image: busybox:1.37
+          command:
+            - sh
+            - -c
+            - |
+              while true; do
+                echo "<html><head><title>Status Page</title></head><body><h1>System Status</h1><p>Hostname: $(hostname)</p><p>Last updated: $(date -u)</p></body></html>" > /usr/share/nginx/html/index.html
+                sleep 30
+              done
+          volumeMounts:
+            - name: content
+              mountPath: /usr/share/nginx/html
+      volumes:
+        - name: content
+          emptyDir: {}

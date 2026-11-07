@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ns-welcome
+  labels:
+    app: ns-welcome
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ns-welcome
+  template:
+    metadata:
+      labels:
+        app: ns-welcome
+    spec:
+      containers:
+        - name: hello
+          image: nginxdemos/hello:plain-text
+          ports:
+            - containerPort: 80

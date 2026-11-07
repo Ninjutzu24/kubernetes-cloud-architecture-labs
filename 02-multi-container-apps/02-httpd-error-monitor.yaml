@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpd-with-monitor
+  labels:
+    app: httpd-with-monitor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: httpd-with-monitor
+  template:
+    metadata:
+      labels:
+        app: httpd-with-monitor
+    spec:
+      containers:
+        - name: httpd
+          image: httpd:2.4
+          command:
+            - sh
+            - -c
+            - |
+              sed -i 's|ErrorLog /proc/self/fd/2|ErrorLog logs/error_log|' \
+                /usr/local/apache2/conf/httpd.conf
+              httpd-foreground
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: logs
+              mountPath: /usr/local/apache2/logs
+        - name: error-monitor
+          image: busybox:1.37
+          command:
+            - sh
+            - -c
+            - |
+              until [ -f /usr/local/apache2/logs/error_log ]; do sleep 1; done
+              tail -f /usr/local/apache2/logs/error_log
+          volumeMounts:
+            - name: logs
+              mountPath: /usr/local/apache2/logs
+      volumes:
+        - name: logs
+          emptyDir: {}

@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpd-with-adapter
+  labels:
+    app: httpd-with-adapter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: httpd-with-adapter
+  template:
+    metadata:
+      labels:
+        app: httpd-with-adapter
+    spec:
+      containers:
+        - name: httpd
+          image: httpd:2.4
+          command:
+            - sh
+            - -c
+            - |
+              sed -i 's|CustomLog /proc/self/fd/1 common|CustomLog logs/access_log common|' \
+                /usr/local/apache2/conf/httpd.conf
+              httpd-foreground
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: logs
+              mountPath: /usr/local/apache2/logs
+        - name: log-adapter
+          image: busybox:1.37
+          command:
+            - sh
+            - -c
+            - |
+              until [ -f /usr/local/apache2/logs/access_log ]; do sleep 1; done
+              tail -f /usr/local/apache2/logs/access_log | \
+                awk 'BEGIN{OFS=","} {print $1,substr($4,2),substr($6,2),$7,$9; fflush()}'
+          volumeMounts:
+            - name: logs
+              mountPath: /usr/local/apache2/logs
+      volumes:
+        - name: logs
+          emptyDir: {}

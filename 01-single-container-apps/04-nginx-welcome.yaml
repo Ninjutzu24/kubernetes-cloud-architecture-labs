@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-welcome
+  labels:
+    app: nginx-welcome
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-welcome
+  template:
+    metadata:
+      labels:
+        app: nginx-welcome
+    spec:
+      containers:
+      - name: hello
+        image: nginxdemos/hello:plain-text
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-welcome-svc
+spec:
+  type: ClusterIP
+  ports:
+  - port: 3000
+    targetPort: 80
+  selector:
+    app: nginx-welcome

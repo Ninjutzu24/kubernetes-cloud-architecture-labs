@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: request-debug
+  labels:
+    app: request-debug
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: request-debug
+  template:
+    metadata:
+      labels:
+        app: request-debug
+    spec:
+      containers:
+        - name: whoami
+          image: traefik/whoami:v1.10
+          ports:
+            - containerPort: 80
+          env:
+            - name: WHOAMI_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace

@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ns-echo
+  labels:
+    app: ns-echo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ns-echo
+  template:
+    metadata:
+      labels:
+        app: ns-echo
+    spec:
+      containers:
+        - name: http-echo
+          image: hashicorp/http-echo:0.2.3
+          args:
+            - "-text=namespace: $(ECHO_NAMESPACE)"
+            - "-listen=:5678"
+          ports:
+            - containerPort: 5678
+          env:
+            - name: ECHO_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace

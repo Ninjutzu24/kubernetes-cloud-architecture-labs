@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tomcat-with-logger
+  labels:
+    app: tomcat-with-logger
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tomcat-with-logger
+  template:
+    metadata:
+      labels:
+        app: tomcat-with-logger
+    spec:
+      containers:
+        - name: tomcat
+          image: tomcat:11.0-jre21
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 5
+          volumeMounts:
+            - name: logs
+              mountPath: /usr/local/tomcat/logs
+        - name: access-logger
+          image: busybox:1.37
+          command:
+            - sh
+            - -c
+            - |
+              until ls /usr/local/tomcat/logs/localhost_access_log.*.txt 1>/dev/null 2>&1; do
+                sleep 1
+              done
+              tail -f /usr/local/tomcat/logs/localhost_access_log.*.txt
+          volumeMounts:
+            - name: logs
+              mountPath: /usr/local/tomcat/logs
+      volumes:
+        - name: logs
+          emptyDir: {}
